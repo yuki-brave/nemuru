@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pictweet2</title>
+    <title>ねむる</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,7 +18,7 @@
           <span><%= current_user.nickname %>
             <ul class="user__info">
               <li>
-                <%= link_to "マイページ", "/users/#{current_user.id}" %>
+                <%= link_to "マイページ", "#" %>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
             </ul>
