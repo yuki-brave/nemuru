@@ -33,7 +33,7 @@ class TweetsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @tweet.destroy
     redirect_to action: :index
