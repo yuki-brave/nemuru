@@ -4,8 +4,8 @@ class CreateTweets < ActiveRecord::Migration[6.0]
       t.string     :title,          null: false
       t.text       :text,           null: false
       t.integer    :mind_id,        null: false
-      t.integer    :image_color_id, null: false
-      t.integer    :sharpness_id,   null: false
+      t.integer    :category_id,    null: false
+      t.integer    :time_zone_id,   null: false
       t.references :user,           null: false, foreign_key: true
 
       t.timestamps

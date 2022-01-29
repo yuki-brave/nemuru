@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_074044) do
     t.string "title", null: false
     t.text "text", null: false
     t.integer "mind_id", null: false
-    t.integer "image_color_id", null: false
-    t.integer "sharpness_id", null: false
+    t.integer "category_id", null: false
+    t.integer "time_zone_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
