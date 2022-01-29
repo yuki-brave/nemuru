@@ -1,0 +1,27 @@
+<div class="contents row">
+  <div class="content_post" >
+    <% if user_signed_in? && current_user.id == @tweet.user_id %>
+      <div class="more">
+        <span><%= image_tag 'arrow_top.png' %></span>
+        <ul class="more_list">
+          <li>
+            <%= link_to '編集', '#', method: :get %>
+          </li>
+          <li>
+            <%= link_to '削除', '#', method: :delete %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    <p><%= @tweet.title %></p>
+    <span class="name">
+      <a href="#">
+        <span>投稿者</span><%= @tweet.user.nickname %>
+      </a>
+    </span>
+  </div>
+  <%= @tweet.text %></br>
+  <%= Mind.find(@tweet.mind_id)[:name] %></br>
+  <%= Category.find(@tweet.category_id)[:name] %></br>
+  <%= TimeZone.find(@tweet.time_zone_id)[:name] %>
+</div>
