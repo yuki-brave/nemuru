@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_tweet, only: [:show, :edit, :update]
   before_action :move_to_index, only: [:edit]
- 
+
   def index
     @tweets = Tweet.includes(:user).order('created_at DESC')
   end
@@ -45,9 +45,6 @@ class TweetsController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id != @tweet.user_id
-      redirect_to action: :index
-    end
+    redirect_to action: :index if current_user.id != @tweet.user_id
   end
-
 end
