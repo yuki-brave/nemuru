@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+      tweet:
+        title: 夢のタイトル
+        text: 夢の内容
+        mind_id: 気持ち
+        category_id: カテゴリー
+        time_zone_id: 時間帯
