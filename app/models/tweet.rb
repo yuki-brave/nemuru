@@ -6,5 +6,5 @@ class Tweet < ApplicationRecord
   belongs_to :user
 
   validates :title, :text, presence: true
-  validates :mind_id, :category_id, :time_zone_id, numericality: { other_than: 1, message: "を入力してください" }
+  validates :mind_id, :category_id, :time_zone_id, numericality: { other_than: 1, message: 'を入力してください' }
 end
