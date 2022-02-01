@@ -2,7 +2,7 @@
   <h5 class="card-title"> <%= @tweet.title %></h5>
     <ul class="list-group list-group-flush">
       <li class="list-group-item"></li>
-      <li class="list-group-item">投稿者：<%= link_to @tweet.user.nickname, "#" %></li>
+      <li class="list-group-item">投稿者：<%= link_to @tweet.user.nickname, user_path(@tweet.user.id) %></li>
       <li class="list-group-item">気持ち： <%= Mind.find(@tweet.mind_id)[:name] %></li>
       <li class="list-group-item">カテゴリー：<%= Category.find(@tweet.category_id)[:name] %></li>
       <li class="list-group-item">時間帯：<%= TimeZone.find(@tweet.time_zone_id)[:name] %></li>
