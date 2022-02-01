@@ -1,4 +1,4 @@
-<%= form_with(model: tweet, local: true) do |f| %>
+<%= form_with model: tweet, url: url, local: true do |f| %>
   <%= render 'shared/error_messages', model: f.object %>
   <%= f.text_field :title, placeholder: "夢のタイトル"%>
   <%= f.text_area :text, placeholder: "夢の内容", rows: "10" %>

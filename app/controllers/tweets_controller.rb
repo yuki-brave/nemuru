@@ -4,16 +4,17 @@ class TweetsController < ApplicationController
   before_action :move_to_index, only: [:edit, :destroy]
 
   def index
-    @tweets = Tweet.includes(:user).order('created_at DESC')
+    @tweet_tags = Tweet.includes(:user).order('created_at DESC')
   end
 
   def new
-    @tweet = Tweet.new
+    @tweet_tag = TweetTag.new
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
-    if @tweet.save
+    @tweet_tag = TweetTag.new(tweet_tag_params)
+    if @tweet_tag.valid? 
+      @tweet_tag.save
       redirect_to action: :index
     else
       render :new
@@ -40,6 +41,10 @@ class TweetsController < ApplicationController
   end
 
   private
+
+  def tweet_tag_params
+    params.require(:tweet_tag).permit(:title, :text, :mind_id, :category_id, :time_zone_id).merge(user_id: current_user.id)
+  end
 
   def tweet_params
     params.require(:tweet).permit(:title, :text, :mind_id, :category_id, :time_zone_id).merge(user_id: current_user.id)
