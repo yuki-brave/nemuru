@@ -1,6 +1,9 @@
 class TweetTag
   include ActiveModel::Model
-  attr_accessor :title, :text, :mind_id, :category_id, :time_zone_id, :user_id
+  attr_accessor(
+    :title, :text, :mind_id, :category_id, :time_zone_id, :user_id,
+    :id, :created_at, :datetime, :updated_at, :datetime
+  )
 
   with_options presence: true do
     validates :title, :text, :user_id
@@ -9,5 +12,9 @@ class TweetTag
 
   def save
     Tweet.create(title: title, text: text, mind_id: mind_id, category_id: category_id, time_zone_id: time_zone_id, user_id: user_id)
+  end
+
+  def update(params, tweet)
+    tweet.update(params)
   end
 end

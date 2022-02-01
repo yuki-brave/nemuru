@@ -25,10 +25,14 @@ class TweetsController < ApplicationController
   end
 
   def edit
+    tweet_attributes = @tweet.attributes
+    @tweet_tag = TweetTag.new(tweet_attributes)
   end
 
   def update
-    if @tweet.update(tweet_params)
+    @tweet_tag = TweetTag.new(tweet_tag_params)
+    if @tweet_tag.valid?
+      @tweet_tag.update(tweet_tag_params, @tweet)
       redirect_to action: :show
     else
       render :edit
@@ -45,11 +49,7 @@ class TweetsController < ApplicationController
   def tweet_tag_params
     params.require(:tweet_tag).permit(:title, :text, :mind_id, :category_id, :time_zone_id).merge(user_id: current_user.id)
   end
-
-  def tweet_params
-    params.require(:tweet).permit(:title, :text, :mind_id, :category_id, :time_zone_id).merge(user_id: current_user.id)
-  end
-
+  
   def set_tweet
     @tweet = Tweet.find(params[:id])
   end
