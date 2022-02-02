@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
 
   def create
     @tweet_tag = TweetTag.new(tweet_tag_params)
-    if @tweet_tag.valid? 
+    if @tweet_tag.valid?
       @tweet_tag.save
       redirect_to action: :index
     else
@@ -48,7 +48,8 @@ class TweetsController < ApplicationController
   private
 
   def tweet_tag_params
-    params.require(:tweet_tag).permit(:title, :text, :mind_id, :category_id, :time_zone_id, :tag_name).merge(user_id: current_user.id)
+    params.require(:tweet_tag).permit(:title, :text, :mind_id, :category_id, :time_zone_id,
+                                      :tag_name).merge(user_id: current_user.id)
   end
 
   def set_tweet
