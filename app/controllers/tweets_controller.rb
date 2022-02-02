@@ -27,6 +27,7 @@ class TweetsController < ApplicationController
   def edit
     tweet_attributes = @tweet.attributes
     @tweet_tag = TweetTag.new(tweet_attributes)
+    @tweet_tag.tag_name = @tweet.tags&.first&.tag_name
   end
 
   def update
