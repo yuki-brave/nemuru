@@ -1,12 +1,13 @@
-<%= form_with(model: tweet, local: true) do |f| %>
+<%= form_with model: tweet, url: url,method: method, local: true do |f| %>
   <%= render 'shared/error_messages', model: f.object %>
   <%= f.text_field :title, placeholder: "夢のタイトル"%>
   <%= f.text_area :text, placeholder: "夢の内容", rows: "10" %>
+  <%= f.text_field :tag_name, placeholder: "タグ"%>
   <div class="tweet-form">気持ち</div>
   <%= f.collection_select(:mind_id, Mind.all, :id, :name, {}, {class:"select-box"}) %>
   <div class="tweet-form">カテゴリー</div>
   <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"})%>
-   <div class="tweet-form">時間帯</div>
-   <%= f.collection_select(:time_zone_id, TimeZone.all, :id, :name, {}, {class:"select-box"})%>
+  <div class="tweet-form">時間帯</div>
+  <%= f.collection_select(:time_zone_id, TimeZone.all, :id, :name, {}, {class:"select-box"})%>
   <%= f.submit "送信", class:"submit-bottom" %>
 <% end %>
