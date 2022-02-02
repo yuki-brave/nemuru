@@ -8,7 +8,7 @@ class Tweet < ApplicationRecord
   has_many :tags, through: :tweet_tag_relations
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Tweet.where('title LIKE(?)', "%#{search}%")
     else
       Tweet.all
