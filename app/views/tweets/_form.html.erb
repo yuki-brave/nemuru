@@ -9,5 +9,5 @@
   <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"})%>
   <div class="tweet-form">時間帯</div>
   <%= f.collection_select(:time_zone_id, TimeZone.all, :id, :name, {}, {class:"select-box"})%>
-  <%= f.submit "送信", class:"submit-bottom" %>
+  <%= f.submit "投稿", class:"submit-bottom" %>
 <% end %>
