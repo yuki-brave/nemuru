@@ -7,6 +7,9 @@
       <li class="list-group-item">気持ち： <%= Mind.find(@tweet.mind_id)[:name] %></li>
       <li class="list-group-item">カテゴリー：<%= Category.find(@tweet.category_id)[:name] %></li>
       <li class="list-group-item">時間帯：<%= TimeZone.find(@tweet.time_zone_id)[:name] %></li>
+      <% if @tweet.thoughts %>
+      <li class="list-group-item">＜感想など＞<br><%= @tweet.thoughts %></li>
+      <% end %>
       <li class="list-group-item"></li>
     </ul>
     <h6 class="card-title">＜夢の内容＞</h6>
