@@ -2,7 +2,8 @@
   <%= render 'shared/error_messages', model: f.object %>
   <%= f.text_field :title, placeholder: "夢のタイトル"%>
   <%= f.text_area :text, placeholder: "夢の内容", rows: "10" %>
-  <%= f.text_field :tag_name, placeholder: "タグ"%>
+  <%= f.text_field :tag_name, placeholder: "タグ", id: 'tweet_tag_name' %>
+  <div id="search-result"></div>
   <div class="tweet-form">気持ち</div>
   <%= f.collection_select(:mind_id, Mind.all, :id, :name, {}, {class:"select-box"}) %>
   <div class="tweet-form">カテゴリー</div>
