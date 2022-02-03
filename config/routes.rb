@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    collection do
+      get 'incre_search', to: 'tweets#incre_search'
+    end
   end
   resources :users, only: :show
 end
