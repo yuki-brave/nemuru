@@ -10,6 +10,11 @@ RSpec.describe Tweet, type: :model do
       it '全ての項目が入力されていれば投稿できる' do
         expect(@tweet).to be_valid
       end
+      it 'thoughtsが空でも投稿できる' do
+        @tweet.thoughts = ''
+        @tweet.valid?
+        expect(@tweet).to be_valid
+      end
     end
     context 'tweetの新規投稿ができないとき' do
       it 'titleが空では投稿できない' do
