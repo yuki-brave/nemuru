@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe TweetTag, type: :model do
   before do
     @user = FactoryBot.build(:user)
-    @user.id = "1"
+    @user.id = '1'
     @user.save
     @tweet = FactoryBot.build(:tweet)
-    @tweet.id = "1"
+    @tweet.id = '1'
     @tweet.save
     @tweet_tag = FactoryBot.build(:tweet_tag, user_id: @user.id, id: @tweet.id)
   end
