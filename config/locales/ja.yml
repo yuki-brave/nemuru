@@ -6,7 +6,10 @@ ja:
         password: パスワード 
         password_confirmation: パスワード（確認）
         nickname: ニックネーム
-      tweet:
+
+  activemodel:
+    attributes:
+      tweet_tag:
         title: 夢のタイトル
         text: 夢の内容
         mind_id: 気持ち
