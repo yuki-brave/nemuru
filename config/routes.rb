@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       get 'incre_search', to: 'tweets#incre_search'
     end
+    resources :comments, only: :create
   end
   resources :users, only: :show
 end
