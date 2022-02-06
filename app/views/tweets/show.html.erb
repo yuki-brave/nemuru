@@ -23,20 +23,22 @@
 
 <div class="container">
     <% if user_signed_in? %>
-      <%= form_with(model: [@tweet, @comment], local: true) do |f| %>
+      <%= form_with model: [@tweet, @comment], id: "comment_form" do |f| %>
         <%= f.text_area :text, placeholder: "コメントする(ポジティブな内容でお願いします)", rows: "2" %>
-        <%= f.submit "SEND" %>
+        <%= f.submit "送信" %>
       <% end %>
     <% else %>
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
-       <% @comments.each do |comment| %>
+      <div id="comments">
+        <% @comments.each do |comment| %>
         <p>
           <strong><%= link_to comment.user.nickname, user_path(comment.user_id) %>：</strong>
           <%= comment.text %>
         </p>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
