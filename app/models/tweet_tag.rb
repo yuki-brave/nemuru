@@ -9,7 +9,7 @@ class TweetTag
   with_options presence: true do
     validates :title, :text, :user_id
   end
-  validates :mind_id, :category_id, :time_length_id, presence: {message: 'を選択してください' }
+  validates :mind_id, :category_id, :time_length_id, presence: { message: 'を選択してください' }
 
   def save
     tweet = Tweet.create(title: title, text: text, mind_id: mind_id, category_id: category_id, time_length_id: time_length_id,
