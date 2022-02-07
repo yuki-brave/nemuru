@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get 'incre_search', to: 'tweets#incre_search'
     end
     resources :comments, only: :create
-    resources :likes, only: [:create]
+    resources :likes, only: [:create, :destroy]
   end
   resources :users, only: :show
 end
