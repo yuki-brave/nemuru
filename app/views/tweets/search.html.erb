@@ -23,7 +23,7 @@
   <div class="search-field">
     <%= f.label :category_id_in, '時間帯' %>
     <br>
-    <%= f.collection_check_boxes(:time_zone_id_in, TimeZone.all, :id, :name, {include_blank: "---"}) %>
+    <%= f.collection_check_boxes(:time_length_id_in, TimeZone.all, :id, :name, {include_blank: "---"}) %>
   </div>
   -->
   <div class="row">
@@ -38,7 +38,7 @@
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><%= f.collection_check_boxes(:mind_id_in, Mind.all, :id, :name, {include_blank: "---"}) %></div>
         <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %></div>
-        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><%= f.collection_check_boxes(:time_zone_id_in, TimeZone.all, :id, :name, {include_blank: "---"}) %></div>
+        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><%= f.collection_check_boxes(:time_length_id_in, TimeZone.all, :id, :name, {include_blank: "---"}) %></div>
       </div>
     </div>
   </div>

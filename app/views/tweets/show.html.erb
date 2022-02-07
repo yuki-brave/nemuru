@@ -6,7 +6,7 @@
       <li class="list-group-item">投稿者：<%= link_to @tweet.user.nickname, user_path(@tweet.user.id) %></li>
       <li class="list-group-item">気持ち： <%= Mind.find(@tweet.mind_id)[:name] %></li>
       <li class="list-group-item">カテゴリー：<%= Category.find(@tweet.category_id)[:name] %></li>
-      <li class="list-group-item">時間帯：<%= TimeZone.find(@tweet.time_zone_id)[:name] %></li>
+      <li class="list-group-item">夢の長さ：<%= TimeLength.find(@tweet.time_length_id)[:name] %></li>
       <% if @tweet.thoughts %>
       <li class="list-group-item">＜感想など＞<br><%= @tweet.thoughts %></li>
       <% end %>

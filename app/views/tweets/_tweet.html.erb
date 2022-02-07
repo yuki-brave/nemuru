@@ -5,6 +5,6 @@
    内容：<%= tweet.text %>
   </div>
   <div>
-    気持ち： <%= Mind.find(tweet.mind_id)[:name] %>　カテゴリー：<%= Category.find(tweet.category_id)[:name] %>　時間帯：<%= TimeZone.find(tweet.time_zone_id)[:name] %>
+    気持ち： <%= Mind.find(tweet.mind_id)[:name] %>　カテゴリー：<%= Category.find(tweet.category_id)[:name] %>　夢の長さ：<%= TimeLength.find(tweet.time_length_id)[:name] %>
   </div>
 </div>

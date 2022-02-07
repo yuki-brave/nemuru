@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_02_06_020314) do
     t.text "thoughts"
     t.integer "mind_id", null: false
     t.integer "category_id", null: false
-    t.integer "time_zone_id", null: false
+    t.integer "time_length_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

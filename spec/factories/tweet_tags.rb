@@ -6,6 +6,6 @@ FactoryBot.define do
     tag_name     { Faker::Lorem.word }
     mind_id      { Faker::Number.within(range: 2..4) }
     category_id  { Faker::Number.within(range: 2..12) }
-    time_zone_id { Faker::Number.within(range: 2..5) }
+    time_length_id { Faker::Number.within(range: 2..4) }
   end
 end
