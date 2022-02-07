@@ -21,6 +21,17 @@
     <% end %>
 </div>
 
+<% unless current_user.likes.find_by(tweet_id: @tweet.id) %>
+  <%= form_with model: @like, url: tweet_likes_path(@tweet.id), local: true do |f| %>
+    <%= f.hidden_field :tweet_id, value: @tweet.id %>
+    <%= f.submit 'いいね' %>
+  <% end %>
+<% end %>
+
+<% flash.each do |message_type, message| %>
+  <%= message %>
+<% end %>
+
 <div class="container">
     <% if user_signed_in? %>
       <%= form_with model: [@tweet, @comment], id: "comment_form" do |f| %>
