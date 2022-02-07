@@ -26,7 +26,7 @@
 | text           | text       | null: false |
 | mind_id        | integer    | null: false |
 | category_id    | integer    | null: false |
-| time_zone_id   | integer    | null: false | 
+| time_length_id | integer    | null: false | 
 | user           | references | null: false, foreign_key: true |
 
 ### Association
