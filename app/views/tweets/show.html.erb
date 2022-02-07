@@ -26,6 +26,11 @@
     <%= f.hidden_field :tweet_id, value: @tweet.id %>
     <%= f.submit 'いいね' %>
   <% end %>
+<% else %>
+  <%= form_with model: @like, url: tweet_like_path(@tweet.id), method: :delete, local: true do |f| %>
+    <%= f.hidden_field :tweet_id, value: @tweet.id %>
+    <%= f.submit 'いいね削除' %>
+  <% end %>
 <% end %>
 
 <% flash.each do |message_type, message| %>
