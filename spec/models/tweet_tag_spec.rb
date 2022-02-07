@@ -38,20 +38,20 @@ RSpec.describe TweetTag, type: :model do
         @tweet_tag.valid?
         expect(@tweet_tag.errors.full_messages).to include('夢の内容を入力してください')
       end
-      it 'mind_idが1では投稿できない' do
-        @tweet_tag.mind_id = '1'
+      it 'mind_idが空では投稿できない' do
+        @tweet_tag.mind_id = ''
         @tweet_tag.valid?
         expect(@tweet_tag.errors.full_messages).to include('気持ちを選択してください')
       end
-      it 'category_idが1では投稿できない' do
-        @tweet_tag.category_id = '1'
+      it 'category_idが空では投稿できない' do
+        @tweet_tag.category_id = ''
         @tweet_tag.valid?
         expect(@tweet_tag.errors.full_messages).to include('カテゴリーを選択してください')
       end
-      it 'time_zone_idが1では投稿できない' do
-        @tweet_tag.time_zone_id = '1'
+      it 'time_length_idが空では投稿できない' do
+        @tweet_tag.time_length_id = ''
         @tweet_tag.valid?
-        expect(@tweet_tag.errors.full_messages).to include('時間帯を選択してください')
+        expect(@tweet_tag.errors.full_messages).to include('夢の長さを選択してください')
       end
     end
   end

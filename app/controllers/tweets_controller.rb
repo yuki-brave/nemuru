@@ -66,7 +66,7 @@ class TweetsController < ApplicationController
   private
 
   def tweet_tag_params
-    params.require(:tweet_tag).permit(:title, :text, :thoughts, :mind_id, :category_id, :time_zone_id,
+    params.require(:tweet_tag).permit(:title, :text, :thoughts, :mind_id, :category_id, :time_length_id,
                                       :tag_name).merge(user_id: current_user.id)
   end
 

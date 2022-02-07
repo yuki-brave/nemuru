@@ -37,10 +37,10 @@ RSpec.describe Tweet, type: :model do
         @tweet.valid?
         expect(@tweet.errors.full_messages).to include('カテゴリーを選択してください')
       end
-      it 'time_zone_idが1では投稿できない' do
-        @tweet.time_zone_id = '1'
+      it 'time_length_idが1では投稿できない' do
+        @tweet.time_length_id = '1'
         @tweet.valid?
-        expect(@tweet.errors.full_messages).to include('時間帯を選択してください')
+        expect(@tweet.errors.full_messages).to include('夢の時間を選択してください')
       end
       it 'userが紐付いていなければ投稿できない' do
         @tweet.user = nil

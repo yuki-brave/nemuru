@@ -23,7 +23,7 @@
   <div class="search-field">
     <%= f.label :category_id_in, '時間帯' %>
     <br>
-    <%= f.collection_check_boxes(:time_zone_id_in, TimeZone.all, :id, :name, {include_blank: "---"}) %>
+    <%= f.collection_check_boxes(:time_length_id_in, TimeLength.all, :id, :name, {include_blank: "---"}) %>
   </div>
   -->
   <div class="row">
@@ -31,14 +31,14 @@
       <div class="list-group" id="list-tab" role="tablist">
         <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home"><%= f.label :category_id_in, '気持ち' %></a>
         <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">夢のカテゴリー</a>
-        <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">時間帯</a>
+        <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">夢の長さ</a>
       </div>
     </div>
     <div class="col-6">
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><%= f.collection_check_boxes(:mind_id_in, Mind.all, :id, :name, {include_blank: "---"}) %></div>
         <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %></div>
-        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><%= f.collection_check_boxes(:time_zone_id_in, TimeZone.all, :id, :name, {include_blank: "---"}) %></div>
+        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><%= f.collection_check_boxes(:time_length_id_in, TimeLength.all, :id, :name, {include_blank: "---"}) %></div>
       </div>
     </div>
   </div>
