@@ -17,6 +17,7 @@
 
 - has_many :tweets
 - has_many :comments
+- has_many :likes
 
 ## tweets テーブル
 
@@ -35,6 +36,7 @@
 - belongs_to :user
 - has_many :tweet_tag_relations
 - has_many :tags, through :tweet_tag_relations
+- has_many :likes
 
 ## comments テーブル
 
@@ -71,3 +73,16 @@
 
 - belongs_to :tweet
 - belongs_to :tag
+
+
+## likes テーブル
+
+| Column | Type       | Options     |
+| ------ | ---------- | ----------- |
+| user   | references |             |
+| tweet  | references |             |               
+
+### Association
+
+- belongs_to :user
+- belongs_to :tweet
