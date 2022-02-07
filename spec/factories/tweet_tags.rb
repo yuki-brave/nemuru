@@ -4,8 +4,8 @@ FactoryBot.define do
     text         { Faker::Lorem.sentence }
     thoughts     { Faker::Lorem.sentence }
     tag_name     { Faker::Lorem.word }
-    mind_id      { Faker::Number.within(range: 2..4) }
-    category_id  { Faker::Number.within(range: 2..12) }
-    time_length_id { Faker::Number.within(range: 2..4) }
+    mind_id      { Faker::Number.within(range: 1..3) }
+    category_id  { Faker::Number.within(range: 1..11) }
+    time_length_id { Faker::Number.within(range: 1..3) }
   end
 end

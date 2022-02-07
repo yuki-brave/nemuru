@@ -6,10 +6,10 @@
   <%= f.text_field :tag_name, placeholder: "タグ", id: 'tweet_tag_name' %>
   <div id="search-result"></div>
   <div class="tweet-form">気持ち</div>
-  <%= f.collection_select(:mind_id, Mind.all, :id, :name, {}, {class:"select-box"}) %>
+  <%= f.collection_select(:mind_id, Mind.all, :id, :name, {include_blank: "---"}, {class:"select-box"}) %>
   <div class="tweet-form">カテゴリー</div>
-  <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"})%>
+  <%= f.collection_select(:category_id, Category.all, :id, :name, {include_blank: "---"}, {class:"select-box"})%>
   <div class="tweet-form">夢の長さ</div>
-  <%= f.collection_select(:time_length_id, TimeLength.all, :id, :name, {}, {class:"select-box"})%>
+  <%= f.collection_select(:time_length_id, TimeLength.all, :id, :name, {include_blank: "---"}, {class:"select-box"})%>
   <%= f.submit "投稿", class:"submit-bottom" %>
 <% end %>
