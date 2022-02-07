@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_071245) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tweet_id"], name: "index_likes_on_tweet_id"
+    t.index ["user_id", "tweet_id"], name: "index_likes_on_user_id_and_tweet_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -76,6 +77,8 @@ ActiveRecord::Schema.define(version: 2022_02_07_071245) do
 
   add_foreign_key "comments", "tweets"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "tweets"
+  add_foreign_key "likes", "users"
   add_foreign_key "tweet_tag_relations", "tags"
   add_foreign_key "tweet_tag_relations", "tweets"
   add_foreign_key "tweets", "users"
