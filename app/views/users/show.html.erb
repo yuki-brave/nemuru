@@ -1,5 +1,5 @@
 <div class="contents row">
-  <p><%= @user.nickname %>さんの投稿一覧</p>
+  <p><%= @user.nickname %>（<%= @user.gender_i18n %>・<%= @user.age_i18n %>）の投稿一覧</p>
     <div class="container">
       <% @tweets.each do |tweet| %>
       <h5 class="card-header"><%= link_to tweet.title, tweet_path(tweet.id) %></h5>
@@ -10,6 +10,6 @@
         <li class="list-group-item">時間帯：<%= TimeZone.find(tweet.time_zone_id)[:name] %></li>
         <li class="list-group-item"></li>
       </ul>
-    <% end %>
+      <% end %>
     </div>
 </div>

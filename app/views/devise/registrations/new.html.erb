@@ -4,9 +4,19 @@
     <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
       <%= render "devise/shared/error_messages", resource: f.object %>
 
-       <div class="field">
+      <div class="field">
         <%= f.label :ニックネーム %><br />
         <%= f.text_field :nickname %>
+      </div>
+
+      <div class="field">
+        <%= f.label :性別 %><br />
+        <%= f.select :gender, User.genders_i18n.invert %>
+      </div>
+
+      <div class="field">
+        <%= f.label :年齢 %><br />
+        <%= f.select :age, User.ages_i18n.invert %>
       </div>
 
       <div class="field">
