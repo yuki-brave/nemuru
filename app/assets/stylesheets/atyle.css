@@ -1074,3 +1074,19 @@ footer p {
 .submit-bottom {
   margin-top: 30px
 }
+
+.far {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #808080; 
+  margin-left: 20px;
+  }
+
+.fas {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #e54747;
+  margin-left: 20px;
+  }

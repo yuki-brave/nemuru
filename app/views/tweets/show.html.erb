@@ -21,6 +21,12 @@
     <% end %>
 </div>
 
+<% if user_signed_in? %>
+  <div id = "like_<%= @tweet.id %>">
+    <%= render 'likes/like', tweet: @tweet %>
+  </div>
+<% end %>
+
 <div class="container">
     <% if user_signed_in? %>
       <%= form_with model: [@tweet, @comment], id: "comment_form" do |f| %>

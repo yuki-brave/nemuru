@@ -1,0 +1,10 @@
+<% if current_user.likes.find_by(tweet_id: tweet.id) %>
+  <%= link_to tweet_like_path(tweet,tweet.likes), method: :delete, remote: true do %>
+    <i class="fas fa-heart fa-2x"></i>
+  <% end %>
+<% else %>
+  <%= link_to tweet_likes_path(tweet,tweet.likes), method: :post, remote: true do %>
+    <i class="far fa-heart fa-2x"></i>
+  <% end %>
+<% end %>
+
