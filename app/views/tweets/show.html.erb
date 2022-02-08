@@ -21,20 +21,16 @@
     <% end %>
 </div>
 
-<% unless current_user.likes.find_by(tweet_id: @tweet.id) %>
-  <%= form_with model: @like, url: tweet_likes_path(@tweet.id), local: true do |f| %>
-    <%= f.hidden_field :tweet_id, value: @tweet.id %>
-    <%= f.submit 'いいね' %>
+<% if user_signed_in? %>
+  <% unless current_user.likes.find_by(tweet_id: @tweet.id) %>
+    <%= link_to tweet_likes_path(@tweet.id), method: :post do %>
+      <i class="far fa-heart fa-2x"></i>
+    <% end %>
+  <% else %>
+    <%= link_to tweet_like_path(@tweet.id), method: :delete do %>
+      <i class="fas fa-heart fa-2x"></i>
+    <% end %>
   <% end %>
-<% else %>
-  <%= form_with model: @like, url: tweet_like_path(@tweet.id), method: :delete, local: true do |f| %>
-    <%= f.hidden_field :tweet_id, value: @tweet.id %>
-    <%= f.submit 'いいね削除' %>
-  <% end %>
-<% end %>
-
-<% flash.each do |message_type, message| %>
-  <%= message %>
 <% end %>
 
 <div class="container">
