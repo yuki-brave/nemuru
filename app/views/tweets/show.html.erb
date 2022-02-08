@@ -22,15 +22,9 @@
 </div>
 
 <% if user_signed_in? %>
-  <% unless current_user.likes.find_by(tweet_id: @tweet.id) %>
-    <%= link_to tweet_likes_path(@tweet.id), method: :post do %>
-      <i class="far fa-heart fa-2x"></i>
-    <% end %>
-  <% else %>
-    <%= link_to tweet_like_path(@tweet.id), method: :delete do %>
-      <i class="fas fa-heart fa-2x"></i>
-    <% end %>
-  <% end %>
+  <div id = "like_<%= @tweet.id %>">
+    <%= render 'likes/like', tweet: @tweet %>
+  </div>
 <% end %>
 
 <div class="container">
