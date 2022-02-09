@@ -1090,3 +1090,11 @@ footer p {
   color: #e54747;
   margin-left: 20px;
   }
+
+.tag-name, .like-count{
+  float: right;
+}
+
+.like-tag-box{
+  text-align: right;
+}
