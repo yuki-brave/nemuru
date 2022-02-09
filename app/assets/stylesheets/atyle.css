@@ -1098,3 +1098,10 @@ footer p {
 .like-tag-box{
   text-align: right;
 }
+
+a:not([class]) {
+  text-decoration: none;
+}
+a:not([class]):hover {
+  text-decoration: underline;
+}
