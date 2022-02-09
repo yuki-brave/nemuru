@@ -1,6 +1,5 @@
 <div class="container">
   <div class="card-header">
-
     <% if user_signed_in? %>
       <% if current_user.likes.find_by(tweet_id: tweet.id) %>
         <i class="fas fa-heart fa-sm"></i>

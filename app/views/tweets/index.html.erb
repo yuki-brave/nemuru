@@ -7,6 +7,7 @@
   <% end %>
 <% end %>
 <div class="mx-auto" style="width: 150px;">《<%= link_to '夢の詳細検索', search_tweets_path%>》</div>
-<div class="contents row">
+<div class="container">
+  <p class="text-center text-info text-lg">夢の一覧</p>
   <%= render partial:'tweet', collection: @tweets %>
 </div>
