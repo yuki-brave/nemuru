@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes, dependent: :destroy
   has_many :favorites, through: :likes, source: :tweet
+  has_many :diaries
 
   enum gender: { gender_private: 0, male: 1, female: 2 }
   enum age: { age_private: 0, teens: 1, twenties: 2, thirties: 3, forties: 4, fifties: 5, over_sixties: 6 }
