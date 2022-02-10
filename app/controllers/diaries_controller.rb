@@ -1,5 +1,6 @@
 class DiariesController < ApplicationController
   def index
+    @diaries = Diary.includes(:user)
   end
 
   def new
@@ -15,10 +16,10 @@ class DiariesController < ApplicationController
     end
   end
 
-    private
+  private
 
-    def diary_params
-      params.require(:diary).permit(:start_time, :title, :text, :thought, :mind_id, :category_id, :time_length_id).merge(user_id: current_user.id)
-    end
+  def diary_params
+    params.require(:diary).permit(:start_time, :title, :text, :thought, :mind_id, :category_id, :time_length_id).merge(user_id: current_user.id)
+  end
   
 end
