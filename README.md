@@ -18,6 +18,7 @@
 - has_many :tweets
 - has_many :comments
 - has_many :likes
+- has_many :diaries
 
 ## tweets テーブル
 
@@ -86,3 +87,20 @@
 
 - belongs_to :user
 - belongs_to :tweet
+
+
+## diary テーブル
+
+| Column         | Type       | Options     |
+| -------------- | ---------- | ----------- |
+| start_time     | datetime   | null: false |
+| title          | string     | null: false |
+| text           | text       | null: false |
+| mind_id        | integer    |             |
+| category_id    | integer    |             |
+| time_length_id | integer    |             |
+| user           | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
