@@ -26,6 +26,7 @@
 | -------------- | ---------- | ----------- |
 | title          | string     | null: false |
 | text           | text       | null: false |
+| thought        | text       | null: false |
 | mind_id        | integer    | null: false |
 | category_id    | integer    | null: false |
 | time_length_id | integer    | null: false | 
@@ -96,6 +97,7 @@
 | start_time     | datetime   | null: false |
 | title          | string     | null: false |
 | text           | text       | null: false |
+| thought        | text       |             |
 | mind_id        | integer    |             |
 | category_id    | integer    |             |
 | time_length_id | integer    |             |
