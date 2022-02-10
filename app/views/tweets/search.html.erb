@@ -44,6 +44,7 @@
   </div>
   <%= f.submit '検索' %>
 <% end %>
-<div class="contents row">
+<div class="container">
+  <p class="text-center text-info text-lg">検索結果</p>
   <%= render partial: "tweet", collection: @tweets %>
 </div>
