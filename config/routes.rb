@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "tweets#index"
+  root to: "diaries#index"
   resources :tweets do
     collection do
       get 'search'
@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
   resources :users, only: :show
+  resources :diaries, only: [:index]
 end
