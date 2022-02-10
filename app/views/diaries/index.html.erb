@@ -3,7 +3,7 @@
 
   <% diaries.each do |diary| %>
     <div>
-      <%= diary.title %>
+      <%= link_to diary.title, diary_path(diary.id) %>
     </div>
   <% end %>
   
