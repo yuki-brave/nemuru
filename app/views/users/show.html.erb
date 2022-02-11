@@ -3,7 +3,7 @@
   <% @tweets.each do |tweet| %>
   <div class="container">
     <div class="card-header">
-      <% if current_user.likes.find_by(tweet_id: tweet.id) %>
+      <% if @user.likes.find_by(tweet_id: tweet.id) %>
         <i class="fas fa-heart fa-sm"></i>
       <% else %>
         <i class="far fa-heart fa-sm"></i>
