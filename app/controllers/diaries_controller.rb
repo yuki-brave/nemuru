@@ -1,6 +1,7 @@
 class DiariesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_diary, only: [:show, :edit, :update, :destroy]
+  before_action :set_beginning_of_week
 
   def index
     @diaries = Diary.includes(:user)
@@ -66,4 +67,7 @@ class DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
   end
 
+  def set_beginning_of_week
+    Date.beginning_of_week = :sunday
+  end
 end
