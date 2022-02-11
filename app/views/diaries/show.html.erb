@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card-body">
+    <h5 class="card-title text-center"> <%= @diary.title %></h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"></li>
+        <% if @mind %>
+        <li class="list-group-item">気持ち： <%= @mind %></li>
+        <% end %>
+        <% if @category %>
+        <li class="list-group-item">カテゴリー：<%= @category %></li>
+        <% end %>
+        <% if @time_length %>
+        <li class="list-group-item">夢の長さ：<%= @time_length %></li>
+        <% end %>
+        <% if @diary.thoughts %>
+        <li class="list-group-item  text-center">＜感想など＞<br><%= @diary.thoughts %></li>
+        <% end %>
+        <li class="list-group-item"></li>
+      </ul>
+      <h6 class="card-title  text-center">＜夢の内容＞</h6>
+      <p class="card-text  text-center"><%= simple_format(@diary.text) %></p>
+      <p class="card-text  text-center"><small class="text-muted">投稿日：<%= l @diary.created_at %></small></p>
+      <% if user_signed_in? && current_user.id == @diary.user_id %>
+      <%= link_to '日記編集', edit_diary_path(@diary.id) %>
+      <%= link_to '日記削除', diary_path(@diary.id), method: :delete %>
+      <% end %>
+  </div>
+</div>

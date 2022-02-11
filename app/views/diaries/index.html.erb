@@ -1,0 +1,9 @@
+<%= month_calendar(events: @diaries) do |date, diaries| %>
+  <%= date.day %>
+
+  <% diaries.each do |diary| %>
+    <div>
+      <%= link_to diary.title, diary_path(diary.id) %>
+    </div>
+  <% end %>
+<% end %>

@@ -7,4 +7,5 @@ class TimeLength < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :tweets
+  has_many :diaries
 end

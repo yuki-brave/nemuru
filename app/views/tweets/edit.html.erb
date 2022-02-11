@@ -1,6 +1,5 @@
-<div class="contents row">
-  <div class="container">
-    <h3>編集する</h3>
-    <%= render partial: "form", locals:{ url: tweet_path(@tweet.id), tweet: @tweet_tag, method: :patch} %>
-  </div>
+<div class="container">
+  <h3 class="text-center text-info">編集する</h3>
+  <%= render partial: "form", locals:{ url: tweet_path(@tweet.id), tweet: @tweet_tag, method: :patch} %>
 </div>
+

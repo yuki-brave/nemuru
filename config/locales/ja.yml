@@ -6,7 +6,12 @@ ja:
         password: パスワード 
         password_confirmation: パスワード（確認）
         nickname: ニックネーム
-
+      diary:
+        title: 夢のタイトル
+        text: 夢の内容
+  simple_calendar:
+    previous: 先月
+    next: 来月
   enums:
     user:
       gender:

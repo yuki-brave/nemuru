@@ -1,0 +1,18 @@
+<%= form_with(model: diary, local: true) do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
+  <div class="time">
+    <%= f.label :時間 %>
+    <%= f.datetime_select :start_time %>
+  </div>
+  <%= f.text_field :title, placeholder: "夢のタイトル"%>
+  <%= f.text_area :text, placeholder: "夢の内容", rows: "10" %>
+  <%= f.text_area :thoughts, placeholder: "夢を見た感想など", rows: "5" %>
+  <div id="search-result"></div>
+  <div class="tweet-form">気持ち</div>
+  <%= f.collection_select(:mind_id, Mind.all, :id, :name, {include_blank: "---"}, {class:"select-box"}) %>
+  <div class="tweet-form">カテゴリー</div>
+  <%= f.collection_select(:category_id, Category.all, :id, :name, {include_blank: "---"}, {class:"select-box"})%>
+  <div class="tweet-form">夢の長さ</div>
+  <%= f.collection_select(:time_length_id, TimeLength.all, :id, :name, {include_blank: "---"}, {class:"select-box"})%>
+  <%= f.submit "日記をつける", class:"submit-bottom" %>
+<% end %>
