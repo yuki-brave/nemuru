@@ -14,19 +14,28 @@
   <body>
     <header class="header">
       <div class="header__bar row">
-        <h1 class="grid-6"><a href="/">~ ね む る ん ~</a></h1>
+        <% if (controller_path == 'diaries') %>
+          <h1 class="grid-6"><a href="/diaries">~ ね む る ん 日記 ~</a></h1>
+        <% else %>
+          <h1 class="grid-6"><a href="/">~ ね む る ん 部屋 ~</a></h1>
+        <% end %>
         <% if user_signed_in? %>
         <div class="user_nav grid-6">
           <span><%= current_user.nickname %>
             <ul class="user__info">
               <li>
+                <%= link_to "ツイート", root_path %>
                 <%= link_to "夢日記", diaries_path %>
                 <%= link_to "マイページ", user_path(current_user.id) %>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
             </ul>
           </span>
-          <%= link_to "投稿する", new_tweet_path, class: "post" %>
+          <% if (controller_path == 'diaries') %>
+            <%= link_to '夢日記をつける', new_diary_path %>
+          <% else %>
+            <%= link_to "投稿する", new_tweet_path, class: "post" %>
+          <% end %>
         </div>
         <% else %>
           <div class="grid-6">
