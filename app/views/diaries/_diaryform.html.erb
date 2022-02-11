@@ -1,4 +1,5 @@
 <%= form_with(model: diary, local: true) do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
   <div class="time">
     <%= f.label :start_time %>
     <%= f.datetime_select :start_time %>
