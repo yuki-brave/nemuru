@@ -1,5 +1,5 @@
 class DiariesController < ApplicationController
-  before_action :set_diary, only: [:show]
+  before_action :set_diary, only: [:show, :edit, :update]
 
   def index
     @diaries = Diary.includes(:user)
@@ -33,6 +33,17 @@ class DiariesController < ApplicationController
       @time_length = TimeLength.find(@diary.time_length_id)[:name]
     else
       @time_length == nil
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @diary.update(diary_params)
+      redirect_to diaries_path
+    else
+      render :edit
     end
   end
 

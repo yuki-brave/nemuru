@@ -20,7 +20,7 @@
     <p class="card-text"><%= simple_format(@diary.text) %></p>
     <p class="card-text"><small class="text-muted">投稿日：<%= l @diary.created_at %></small></p>
     <% if user_signed_in? && current_user.id == @diary.user_id %>
-    <%# link_to '編集', edit_diary_path(@diary.id) %>
+    <%= link_to '編集', edit_diary_path(@diary.id) %>
     <%# link_to '削除', diary_path(@diary.id), method: :delete %>
     <% end %>
 </div>
