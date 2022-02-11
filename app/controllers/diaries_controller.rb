@@ -24,17 +24,17 @@ class DiariesController < ApplicationController
     if @diary.mind_id.present?
       @mind = Mind.find(@diary.mind_id)[:name]
     else
-      @mind == nil
+      @mind.nil?
     end
     if @diary.category_id.present?
       @category = Category.find(@diary.category_id)[:name]
     else
-      @category == nil
+      @category.nil?
     end
     if @diary.time_length_id.present?
       @time_length = TimeLength.find(@diary.time_length_id)[:name]
     else
-      @time_length == nil
+      @time_length.nil?
     end
   end
 
@@ -60,9 +60,10 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:start_time, :title, :text, :thought, :mind_id, :category_id, :time_length_id).merge(user_id: current_user.id)
+    params.require(:diary).permit(:start_time, :title, :text, :thought, :mind_id, :category_id,
+                                  :time_length_id).merge(user_id: current_user.id)
   end
-  
+
   def set_diary
     @diary = Diary.find(params[:id])
   end
