@@ -1,5 +1,5 @@
 <%= search_form_for Tweet.ransack(params[:q]), url: search_tweets_path, html: {class: "search-form"} do |f| %>
-  <%= f.text_field :title, placeholder: '夢のタイトルから探す', class: "search-input" %>
+  <%= f.text_field :title, placeholder: '夢のタイトルから探す', class: "comment-form" %>
   <br>
   <%= f.label :submit, class: "search-button" do %>
     <input type="submit" value="検索" class="send">

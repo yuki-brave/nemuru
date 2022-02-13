@@ -1,5 +1,5 @@
-<div class="card-body">
-  <h5 class="card-title"> <%= @tweet.title %></h5>
+<div class="container">
+  <h3 class="card-title"> <%= @tweet.title %></h3>
     <ul class="list-group list-group-flush">
       #<%= @tweet.tags&.first&.tag_name %>
       <li class="list-group-item"></li>
@@ -16,28 +16,29 @@
     <p class="card-text"><%= simple_format(@tweet.text) %></p>
     <p class="card-text"><small class="text-muted">投稿日：<%= l @tweet.created_at %></small></p>
     <% if user_signed_in? && current_user.id == @tweet.user_id %>
-    <%= link_to '編集', edit_tweet_path(@tweet.id) %>
-    <%= link_to '削除', tweet_path(@tweet.id), method: :delete %>
+    <%= link_to '編集', edit_tweet_path(@tweet.id), class:"change-sleep" %>
+    <%= link_to '削除', tweet_path(@tweet.id), method: :delete, class:"change-sleep" %>
     <% end %>
-</div>
 
-<% if user_signed_in? %>
-  <div id = "like_<%= @tweet.id %>">
-    <%= render 'likes/like', tweet: @tweet %>
-  </div>
-<% end %>
+
+  <% if user_signed_in? %>
+    <div id = "like_<%= @tweet.id %>">
+      <%= render 'likes/like', tweet: @tweet %>
+    </div>
+  <% end %>
+</div>
 
 <div class="container">
     <% if user_signed_in? %>
       <%= form_with model: [@tweet, @comment], id: "comment_form" do |f| %>
-        <%= f.text_area :text, placeholder: "コメントする(ポジティブな内容でお願いします)", rows: "2" %>
-        <%= f.submit "送信" %>
+        <div class="text-center"><%= f.text_area :text, placeholder: "コメントする(ポジティブな内容でお願いします)", rows: "2", class:"comment-form" %></div>
+        <div class="text-center"><%= f.submit "送信",class: "submit-btn" %></div>
       <% end %>
     <% else %>
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
     <div class="comments">
-      <h4>＜コメント一覧＞</h4>
+      <h4 class="text-center">＜コメント一覧＞</h4>
       <div id="comments">
         <% @comments.each do |comment| %>
         <p>

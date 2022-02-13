@@ -21,8 +21,8 @@
       <p class="card-text  text-center"><%= simple_format(@diary.text) %></p>
       <p class="card-text  text-center"><small class="text-muted">投稿日：<%= l @diary.created_at %></small></p>
       <% if user_signed_in? && current_user.id == @diary.user_id %>
-      <%= link_to '日記編集', edit_diary_path(@diary.id) %>
-      <%= link_to '日記削除', diary_path(@diary.id), method: :delete %>
+      <%= link_to '日記編集', edit_diary_path(@diary.id), class:"change-sleep" %>
+      <%= link_to '日記削除', diary_path(@diary.id), method: :delete, class:"change-sleep" %>
       <% end %>
   </div>
 </div>
