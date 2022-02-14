@@ -1,25 +1,24 @@
 <div class="container">
   <h3 class="card-title"> <%= @tweet.title %></h3>
-    <ul class="list-group list-group-flush">
-      #<%= @tweet.tags&.first&.tag_name %>
-      <li class="list-group-item"></li>
-      <li class="list-group-item">投稿者：<%= link_to @tweet.user.nickname, user_path(@tweet.user.id) %></li>
-      <li class="list-group-item">気持ち： <%= Mind.find(@tweet.mind_id)[:name] %></li>
-      <li class="list-group-item">カテゴリー：<%= Category.find(@tweet.category_id)[:name] %></li>
-      <li class="list-group-item">夢の長さ：<%= TimeLength.find(@tweet.time_length_id)[:name] %></li>
-      <% if @tweet.thoughts %>
+  <ul class="list-group list-group-flush">
+    #<%= @tweet.tags&.first&.tag_name %>
+    <li class="list-group-item"></li>
+    <li class="list-group-item">投稿者：<%= link_to @tweet.user.nickname, user_path(@tweet.user.id) %></li>
+    <li class="list-group-item">気持ち： <%= Mind.find(@tweet.mind_id)[:name] %></li>
+    <li class="list-group-item">カテゴリー：<%= Category.find(@tweet.category_id)[:name] %></li>
+    <li class="list-group-item">夢の長さ：<%= TimeLength.find(@tweet.time_length_id)[:name] %></li>
+    <% if @tweet.thoughts %>
       <li class="list-group-item">＜感想など＞<br><%= @tweet.thoughts %></li>
-      <% end %>
-      <li class="list-group-item"></li>
-    </ul>
-    <h6 class="card-title">＜夢の内容＞</h6>
-    <p class="card-text"><%= simple_format(@tweet.text) %></p>
-    <p class="card-text"><small class="text-muted">投稿日：<%= l @tweet.created_at %></small></p>
-    <% if user_signed_in? && current_user.id == @tweet.user_id %>
+    <% end %>
+    <li class="list-group-item"></li>
+  </ul>
+  <h6 class="card-title">＜夢の内容＞</h6>
+  <p class="card-text"><%= simple_format(@tweet.text) %></p>
+  <p class="card-text"><small class="text-muted">投稿日：<%= l @tweet.created_at %></small></p>
+  <% if user_signed_in? && current_user.id == @tweet.user_id %>
     <%= link_to '編集', edit_tweet_path(@tweet.id), class:"change-sleep" %>
     <%= link_to '削除', tweet_path(@tweet.id), method: :delete, class:"change-sleep" %>
-    <% end %>
-
+  <% end %>
 
   <% if user_signed_in? %>
     <div id = "like_<%= @tweet.id %>">
@@ -35,7 +34,7 @@
         <div class="text-center"><%= f.submit "送信",class: "submit-btn" %></div>
       <% end %>
     <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+      <p class="text-center">※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
     <% end %>
     <div class="comments">
       <h4 class="text-center">＜コメント一覧＞</h4>
@@ -45,7 +44,7 @@
           <strong><%= link_to comment.user.nickname, user_path(comment.user_id) %>：</strong>
           <%= comment.text %>
         </p>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
