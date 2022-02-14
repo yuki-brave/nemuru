@@ -1,68 +1,123 @@
 <div class="container">
-  <p class="text-center text-info"><%= @user.nickname %>（<%= @user.gender_i18n %>・<%= @user.age_i18n %>）の夢</p>
-  <% @tweets.each do |tweet| %>
-  <div class="container">
-    <div class="card-header">
-      <% if @user.likes.find_by(tweet_id: tweet.id) %>
-        <i class="fas fa-heart fa-sm"></i>
-      <% else %>
-        <i class="far fa-heart fa-sm"></i>
-      <% end %>
-      <strong><%= link_to tweet.title, tweet_path(tweet.id) %></strong>
-      <span class="tag-name">#<%= tweet.tags&.first&.tag_name %></span>
-    </div>
-    <div class="card-footer">
-      いいねの数　<%= Like.where(tweet_id: tweet.id).count %>
-    </div>
-    <ul class="list-group list-group-flush">
-      <div class="btn-group dropdown">
-        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle  btn-info" data-bs-toggle="dropdown" aria-expanded="false">
-        くわしくは
-        </button>
-        <ul class="dropdown-menu">
-          <li class="list-group-item">
-            <span class="d-inline-block text-truncate" style="max-width: 500px;">
-              内容：<%= tweet.text %>
-            </span>
-          </li>
-          <li class="list-group-item">気持ち： <%= Mind.find(tweet.mind_id)[:name] %></li>
-          <li class="list-group-item">カテゴリー：<%= Category.find(tweet.category_id)[:name] %></li>
-          <li class="list-group-item">夢の長さ：<%= TimeLength.find(tweet.time_length_id)[:name] %></li>
-        </ul>
-      </div>
-    </ul>
-  </div>
+  <h3 class="text-center"><%= @user.nickname %>（<%= @user.gender_i18n %>・<%= @user.age_i18n %>）の夢</h3>
+  <p class="py-5 d-flex justify-content-center">
+  <a class="btn btn-info text-light " data-bs-toggle="collapse" href="#my_tweet" role="button" aria-expanded="false" aria-controls="collapseExample">
+    ツイートした夢
+  </a>
+  <button class="btn btn-info text-light ms-5" type="button" data-bs-toggle="collapse" data-bs-target="#like_tweet" aria-expanded="false" aria-controls="collapseExample">
+    いいねした夢
+  </button>
+  <% if user_signed_in? && @user.id == current_user.id %>
+    <button class="btn btn-info text-light ms-5" type="button" data-bs-toggle="collapse" data-bs-target="#diaries" aria-expanded="false" aria-controls="collapseExample">
+      夢日記
+    </button>
   <% end %>
-</div>
-<div class="container">
-  <p class="text-center text-info">いいねした夢</p>
-  <% @favorite_tweets.each do |tweet| %>
-      <div class="container">
-        <div class="card-header">
-          <strong><%= link_to tweet.title, tweet_path(tweet.id) %></strong>
-          <span class="tag-name">#<%= tweet.tags&.first&.tag_name %></span>
-        </div>
-        <div class="card-footer">
-          投稿者：<%= link_to tweet.user.nickname, user_path(tweet.user.id) %>（<%= tweet.user.gender_i18n %>・<%= tweet.user.age_i18n %>）
-          <span class="like-count">いいねの数　<%= Like.where(tweet_id: tweet.id).count %></span>
-        </div>
-        <ul class="list-group list-group-flush">
-          <div class="btn-group dropdown">
-            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle  btn-info" data-bs-toggle="dropdown" aria-expanded="false">
-            くわしくは
-            </button>
-            <ul class="dropdown-menu">
-              <li class="list-group-item">
-                <span class="d-inline-block text-truncate" style="max-width: 500px;">
-                  内容：<%= tweet.text %>
-                </span>
-              </li>
-              <li class="list-group-item">気持ち： <%= Mind.find(tweet.mind_id)[:name] %></li>
-              <li class="list-group-item">カテゴリー：<%= Category.find(tweet.category_id)[:name] %></li>
-              <li class="list-group-item">夢の長さ：<%= TimeLength.find(tweet.time_length_id)[:name] %></li>
-            </ul>
+  </p>
+  <div class="collapse" id="my_tweet">
+    <h3 class="text-center">ツイートした夢</h3>
+    <div class="card card-body">
+      <% @tweets.each do |tweet| %>
+        <div class="container">
+          <div class="card-header">
+            <% if @user.likes.find_by(tweet_id: tweet.id) %>
+              <i class="fas fa-heart fa-sm"></i>
+            <% else %>
+              <i class="far fa-heart fa-sm"></i>
+            <% end %>
+            <strong><%= link_to tweet.title, tweet_path(tweet.id) %></strong>
+            <span class="tag-name">#<%= tweet.tags&.first&.tag_name %></span>
           </div>
-        </ul>
-      </div>
-  <% end %>
+          <div class="card-footer d-flex justify-content-end">
+            いいねの数　<%= Like.where(tweet_id: tweet.id).count %>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="btn-group dropdown">
+              <button type="button" class="btn btn-secondary btn-sm dropdown-toggle  btn-info" data-bs-toggle="dropdown" aria-expanded="false">
+              くわしくは
+              </button>
+              <ul class="dropdown-menu">
+                <li class="list-group-item">
+                  <span class="d-inline-block text-truncate" style="max-width: 500px;">
+                    内容：<%= tweet.text %>
+                  </span>
+                </li>
+                <li class="list-group-item">気持ち： <%= Mind.find(tweet.mind_id)[:name] %></li>
+                <li class="list-group-item">カテゴリー：<%= Category.find(tweet.category_id)[:name] %></li>
+                <li class="list-group-item">夢の長さ：<%= TimeLength.find(tweet.time_length_id)[:name] %></li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+       <% end %>
+    </div>
+  </div>
+  <div class="collapse" id="like_tweet">
+    <h3 class="text-center">いいねした夢</h3>
+    <div class="card card-body">
+      <% @favorite_tweets.each do |tweet| %>
+        <div class="container">
+          <div class="card-header">
+            <strong><%= link_to tweet.title, tweet_path(tweet.id) %></strong>
+            <span class="tag-name">#<%= tweet.tags&.first&.tag_name %></span>
+          </div>
+          <div class="card-footer">
+            投稿者：<%= link_to tweet.user.nickname, user_path(tweet.user.id) %>（<%= tweet.user.gender_i18n %>・<%= tweet.user.age_i18n %>）
+            <span class="like-count">いいねの数　<%= Like.where(tweet_id: tweet.id).count %></span>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="btn-group dropdown">
+              <button type="button" class="btn btn-secondary btn-sm dropdown-toggle  btn-info" data-bs-toggle="dropdown" aria-expanded="false">
+              くわしくは
+              </button>
+              <ul class="dropdown-menu">
+                <li class="list-group-item">
+                  <span class="d-inline-block text-truncate" style="max-width: 500px;">
+                    内容：<%= tweet.text %>
+                  </span>
+                </li>
+                <li class="list-group-item">気持ち： <%= Mind.find(tweet.mind_id)[:name] %></li>
+                <li class="list-group-item">カテゴリー：<%= Category.find(tweet.category_id)[:name] %></li>
+                <li class="list-group-item">夢の長さ：<%= TimeLength.find(tweet.time_length_id)[:name] %></li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="collapse" id="diaries">
+    <h3 class="text-center">夢日記</h3>
+    <div class="card card-body">
+      <% @diaries.each do |diary| %>
+        <div class="container">
+          <div class="card-header">
+            <strong><%= link_to diary.title, diary_path(diary.id) %></strong>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="btn-group dropdown">
+              <button type="button" class="btn btn-secondary btn-sm dropdown-toggle  btn-info" data-bs-toggle="dropdown" aria-expanded="false">
+              くわしくは
+              </button>
+              <ul class="dropdown-menu">
+                <li class="list-group-item">
+                  <span class="d-inline-block text-truncate" style="max-width: 500px;">
+                    内容：<%= diary.text %>
+                  </span>
+                </li>
+                <% if diary.mind_id.present? %>
+                <li class="list-group-item">気持ち： <%= Mind.find(diary.mind_id)[:name] %></li>
+                <% end %>
+                <% if diary.category_id.present? %>
+                <li class="list-group-item">カテゴリー：<%= Category.find(diary.category_id)[:name] %></li>
+                <% end %>
+                <% if diary.time_length_id.present? %>
+                <li class="list-group-item">夢の長さ：<%= TimeLength.find(diary.time_length_id)[:name] %></li>
+                <% end %>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

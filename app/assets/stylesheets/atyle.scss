@@ -1,0 +1,159 @@
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+body,
+html {
+  height: 0%;
+  background-color: #f5f5f3;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body {
+  line-height: 1.57;
+  letter-spacing: 0.15em;
+  font-size: 16px;
+  color: #666;
+  font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
+  margin: 0;
+}
+
+.container {
+  margin: 10px 0;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.container h3 {
+  margin: 10px 0 20px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 20px;
+  color: #666;
+  font-weight: bold;
+}
+
+.comments {
+  padding: 5px;
+  margin-top: 15px;
+}
+
+.comments a {
+  color: #57C3E9;
+}
+
+.comments a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin: 30px auto;
+  padding: 10px;
+  color: #D8D8D8;
+}
+
+footer p {
+  text-align: center;
+}
+
+.tweet-form {
+  font-weight: bold;
+  min-width: 170px;
+  margin: 10px 0 2px;
+  text-align: center;
+}
+
+.select-box {
+  height: 30px;
+  width: 30%;
+  background-color: #f5f5f5;
+  padding-left: 20px;
+  text-align: -webkit-center;
+  display: block; 
+  margin: auto;
+}
+
+.far {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #808080; 
+  margin-left: 20px;
+  }
+
+.fas {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #e54747;
+  margin-left: 20px;
+  }
+
+.tag-name, .like-count{
+  float: right;
+}
+
+a:not([class]) {
+  text-decoration: none;
+  color: #2C7CFF;
+}
+a:not([class]):hover {
+  text-decoration: underline;
+}
+
+.search-form {
+  text-align: center;
+  padding-top: 32px;
+}
+
+form textarea, 
+form input{
+  // width: 100%;
+  margin: 5px 0 15px;
+  padding: 10px;
+  border: 1px solid #D8D8D8;
+  border-radius: 5px;
+  font-family: "游ゴシック", "YuGothic";
+}
+
+form input[type="submit"] {
+  background-color: #57C3E9;
+  border-radius: 20px;
+  color: #fff;
+  border: 0;
+  font-size: 18px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #84d3ef;
+}
+
+.comment-form{
+  width: 40%;
+}
+
+.submit-btn{
+  width: 15%; 
+}
+
+.new-tweet{
+  width: 100%;
+}
+.new-submit-btn{
+  width: 15%;
+  margin-top: 40px;
+}
+
+.text-light{
+  opacity: 0.9;
+}
+
+.change-sleep{
+  font-size: 15px;
+  margin: 0 20px 40px 0;
+  float:right;
+}

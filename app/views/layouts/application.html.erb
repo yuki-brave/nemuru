@@ -2,54 +2,77 @@
 <html>
   <head>
     <title>ねむるん</title>
+    <meta charset="utf-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <script src="https://kit.fontawesome.com/534929e147.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/534929e147.js" crossorigin="anonymous"></script>    
   </head>
-
   <body>
-    <header class="header">
-      <div class="header__bar row">
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-info mt-3 mb-3">
+      <% if user_signed_in? %>
         <% if (controller_path == 'diaries') %>
-          <h1 class="grid-6"><a href="/diaries">~ ね む る ん 日記 ~</a></h1>
+          <h5 class="text-light"><span><%= current_user.nickname %>の</span><a href="/diaries"> ね む る ん 日記</a></h5>
         <% else %>
-          <h1 class="grid-6"><a href="/">~ ね む る ん 部屋 ~</a></h1>
+          <h5 class="text-light"><span><%= current_user.nickname %>の</span><a href="/"> ね む る ん 部屋</a></h5>
         <% end %>
-        <% if user_signed_in? %>
-        <div class="user_nav grid-6">
-          <span><%= current_user.nickname %>
-            <ul class="user__info">
-              <li>
-                <%= link_to "ツイート", root_path %>
-                <%= link_to "夢日記", diaries_path %>
-                <%= link_to "マイページ", user_path(current_user.id) %>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              </li>
-            </ul>
-          </span>
-          <% if (controller_path == 'diaries') %>
-            <%= link_to '夢日記をつける', new_diary_path %>
-          <% else %>
-            <%= link_to "投稿する", new_tweet_path, class: "post" %>
-          <% end %>
+        <div class="collapse navbar-collapse justify-content-start">
+          <ul class="navbar-nav">
+            <li>
+              <% if (controller_path == 'diaries') %>
+                <%= link_to "ツイートへ", root_path, class:"nav-link" %>
+              <% else %>
+                <%= link_to "夢日記へ", diaries_path, class:"nav-link" %>
+              <% end %>
+            </li>
+          </ul>
         </div>
-        <% else %>
-          <div class="grid-6">
-            <%= link_to "ログイン", new_user_session_path, class: "post" %>
-            <%= link_to "新規登録", new_user_registration_path, class: "post" %>
-          </div>
-        <% end %>
-      </div>
-    </header>
-      <%= yield %>
+        <div class="collapse navbar-collapse text-center">
+          <ul class="navbar-nav">
+            <li>
+              <div class="d-grid gap-2 d-md-block">
+                <% if (controller_path == 'diaries') %>
+                  <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '夢日記をつける', new_diary_path, class:"nav-link" %></button>
+                <% else %>
+                  <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to "投稿する", new_tweet_path, class:"nav-link text-light" %></button>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li>
+              <%= link_to "マイページ", user_path(current_user.id), class:"nav-link" %>
+            </li>
+            <li>  
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link" %>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <h5><a href="/"> ね む る ん 部屋</a></h5>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li>
+              <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </nav>
+    <%= yield %>
     <footer>
       <p>
         ~ ね む る ん ~
       </p>
     </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
   </body>
 </html>

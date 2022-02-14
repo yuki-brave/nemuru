@@ -1,49 +1,37 @@
 <div class="container">
   <%= search_form_for @q, url: search_tweets_path, html: {id: "detailed-search-form"} do |f| %>
-    <div class="search-field">
+    <div class="search-field text-center">
       <%= f.label :title, '夢のタイトル(半角スペースで複数検索)' %>
       <br>
-      <%= f.text_field :title, placeholder: '夢のタイトル', value: params[:q]&.dig(:title) %>
+      <%= f.text_field :title, placeholder: '夢のタイトル', value: params[:q]&.dig(:title), class:"comment-form" %>
     </div>
-    <div class="search-field">
+    <div class="search-field text-center">
       <%= f.label :user_nickname_cont, '投稿者名' %>
       <br>
-      <%= f.text_field :user_nickname_cont, placeholder: '投稿者名' %>
+      <%= f.text_field :user_nickname_cont, placeholder: '投稿者名', class:"comment-form" %>
     </div>
-  <!--レイアウトが崩れているため、要修正
-    <div class="search-field">
-      <%= f.label :category_id_in, '気持ち' %>
+    <div class="search-field text-center">
+      <span class="text-info">
+        <%= f.label :category_id_in, '気持ち' %>
+      </span>
       <br>
       <%= f.collection_check_boxes(:mind_id_in, Mind.all, :id, :name, {include_blank: "---"}) %>
     </div>
-    <div class="search-field">
-      <%= f.label :category_id_in, '夢のカテゴリー' %>
+    <div class="search-field text-center">
+      <span class="text-info text-info">
+        <%= f.label :category_id_in, '夢のカテゴリー' %>
+      </span>
       <br>
       <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %>
     </div>
-    <div class="search-field">
-      <%= f.label :category_id_in, '時間帯' %>
+    <div class="search-field text-center">
+      <span class="text-info text-info">
+        <%= f.label :category_id_in, '時間帯' %>
+      </span>
       <br>
       <%= f.collection_check_boxes(:time_length_id_in, TimeLength.all, :id, :name, {include_blank: "---"}) %>
     </div>
-    -->
-    <div class="row">
-      <div class="col-6">
-        <div class="list-group" id="list-tab" role="tablist">
-          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home"><%= f.label :category_id_in, '気持ち' %></a>
-          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">夢のカテゴリー</a>
-          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">夢の長さ</a>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><%= f.collection_check_boxes(:mind_id_in, Mind.all, :id, :name, {include_blank: "---"}) %></div>
-          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %></div>
-          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><%= f.collection_check_boxes(:time_length_id_in, TimeLength.all, :id, :name, {include_blank: "---"}) %></div>
-        </div>
-      </div>
-    </div>
-    <%= f.submit '検索' %>
+    <div class="text-center"><%= f.submit '検索', class: "submit-btn" %></div>
   <% end %>
 </div>
 <div class="container">
