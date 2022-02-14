@@ -9,6 +9,15 @@ ja:
       diary:
         title: 夢のタイトル
         text: 夢の内容
+  errors:
+    messages:
+      not_saved:
+        one: エラーが発生したためユーザーは保存されませんでした。
+        other: "%{count} 件のエラーが発生したためユーザーは保存されませんでした。"
+  devise:
+    failure:
+      user:
+        invalid: Eメールまたはパスワードが違います。
   simple_calendar:
     previous: 先月
     next: 来月
