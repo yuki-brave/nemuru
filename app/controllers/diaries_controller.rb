@@ -16,7 +16,7 @@ class DiariesController < ApplicationController
     if @diary.save
       redirect_to diaries_path
     else
-      render :index
+      render :new
     end
   end
 
@@ -60,7 +60,7 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:start_time, :title, :text, :thought, :mind_id, :category_id,
+    params.require(:diary).permit(:start_time, :title, :text, :thoughts, :mind_id, :category_id,
                                   :time_length_id).merge(user_id: current_user.id)
   end
 
