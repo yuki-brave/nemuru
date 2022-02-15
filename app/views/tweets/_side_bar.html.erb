@@ -1,0 +1,13 @@
+<div class="container">
+  <%= search_form_for Tweet.ransack(params[:q]), url: search_tweets_path, html: {class: "search-form"} do |f| %>
+    <%= f.text_field :title, placeholder: '夢のタイトルから探す', class: "search-textarea" %>
+    <br>
+    <%= f.label :submit, class: "search-button" do %>
+      <input type="submit" value="検索" class="send">
+      <%= f.submit :submit, id: "q_submit", style: "display: none;"%>
+    <% end %>
+  <% end %>
+  <div class="mx-auto" style="width: 150px;">
+    《<%= link_to '夢の詳細検索', search_tweets_path%>》
+  </div>
+</div>

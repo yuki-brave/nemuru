@@ -1,40 +1,48 @@
 <div class="container">
-  <%= search_form_for @q, url: search_tweets_path, html: {id: "detailed-search-form"} do |f| %>
-    <div class="search-field text-center">
-      <%= f.label :title, '夢のタイトル(半角スペースで複数検索)' %>
-      <br>
-      <%= f.text_field :title, placeholder: '夢のタイトル', value: params[:q]&.dig(:title), class:"comment-form" %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="container">
+        <%= search_form_for @q, url: search_tweets_path, html: {id: "detailed-search-form"} do |f| %>
+          <div class="search-field text-center">
+            <%= f.label :title, '夢のタイトル(半角スペースで複数検索)' %>
+            <br>
+            <%= f.text_field :title, placeholder: '夢のタイトル', value: params[:q]&.dig(:title), class:"comment-form" %>
+          </div>
+          <div class="search-field text-center">
+            <%= f.label :user_nickname_cont, '投稿者名' %>
+            <br>
+            <%= f.text_field :user_nickname_cont, placeholder: '投稿者名', class:"comment-form" %>
+          </div>
+          <div class="search-field text-center">
+            <span class="text-info">
+              <%= f.label :category_id_in, '気持ち' %>
+            </span>
+            <br>
+            <%= f.collection_check_boxes(:mind_id_in, Mind.all, :id, :name, {include_blank: "---"}) %>
+          </div>
+          <div class="search-field text-center">
+            <span class="text-info text-info">
+              <%= f.label :category_id_in, '夢のカテゴリー' %>
+            </span>
+            <br>
+            <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %>
+          </div>
+          <div class="search-field text-center">
+            <span class="text-info text-info">
+              <%= f.label :category_id_in, '時間帯' %>
+            </span>
+            <br>
+            <%= f.collection_check_boxes(:time_length_id_in, TimeLength.all, :id, :name, {include_blank: "---"}) %>
+          </div>
+          <div class="text-center"><%= f.submit '検索', class: "search-submit-btn" %></div>
+        <% end %>
+      </div>
     </div>
-    <div class="search-field text-center">
-      <%= f.label :user_nickname_cont, '投稿者名' %>
-      <br>
-      <%= f.text_field :user_nickname_cont, placeholder: '投稿者名', class:"comment-form" %>
+    <div class="col-md-8">
+      <div class="container">
+        <p class="text-center text-info text-lg">検索結果</p>
+        <%= render partial: "tweet", collection: @tweets %>
+      </div>
     </div>
-    <div class="search-field text-center">
-      <span class="text-info">
-        <%= f.label :category_id_in, '気持ち' %>
-      </span>
-      <br>
-      <%= f.collection_check_boxes(:mind_id_in, Mind.all, :id, :name, {include_blank: "---"}) %>
-    </div>
-    <div class="search-field text-center">
-      <span class="text-info text-info">
-        <%= f.label :category_id_in, '夢のカテゴリー' %>
-      </span>
-      <br>
-      <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %>
-    </div>
-    <div class="search-field text-center">
-      <span class="text-info text-info">
-        <%= f.label :category_id_in, '時間帯' %>
-      </span>
-      <br>
-      <%= f.collection_check_boxes(:time_length_id_in, TimeLength.all, :id, :name, {include_blank: "---"}) %>
-    </div>
-    <div class="text-center"><%= f.submit '検索', class: "submit-btn" %></div>
-  <% end %>
-</div>
-<div class="container">
-  <p class="text-center text-info text-lg">検索結果</p>
-  <%= render partial: "tweet", collection: @tweets %>
+  </div>
 </div>
