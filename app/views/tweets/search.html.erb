@@ -22,14 +22,14 @@
           </div>
           <div class="search-field text-center">
             <span class="text-info text-info">
-              <%= f.label :category_id_in, '夢のカテゴリー' %>
+              <%= f.label :category_id_in, 'カテゴリー' %>
             </span>
             <br>
             <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %>
           </div>
           <div class="search-field text-center">
             <span class="text-info text-info">
-              <%= f.label :category_id_in, '時間帯' %>
+              <%= f.label :category_id_in, '夢の長さ' %>
             </span>
             <br>
             <%= f.collection_check_boxes(:time_length_id_in, TimeLength.all, :id, :name, {include_blank: "---"}) %>
