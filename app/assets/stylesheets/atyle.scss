@@ -133,7 +133,7 @@ form input[type="submit"]:hover {
 }
 
 .comment-form{
-  width: 40%;
+  width: 80%;
 }
 
 .search-textarea{
@@ -168,4 +168,14 @@ form input[type="submit"]:hover {
 
 ul {
   list-style-type: none;
+}
+
+.indispensable {
+  background:#FF69A3;
+  padding: 3px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 4px;
+  font-weight: bold;
+  vertical-align: 15%;
 }
