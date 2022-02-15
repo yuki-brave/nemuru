@@ -1,7 +1,7 @@
 <div class="container">
   <h3 class="card-title"> <%= @tweet.title %></h3>
   <ul class="list-group list-group-flush">
-    #<%= @tweet.tags&.first&.tag_name %>
+    <div class="text-end">#<%= @tweet.tags&.first&.tag_name %></div>
     <li class="list-group-item"></li>
     <li class="list-group-item">投稿者：<%= link_to @tweet.user.nickname, user_path(@tweet.user.id) %></li>
     <li class="list-group-item">気持ち： <%= Mind.find(@tweet.mind_id)[:name] %></li>
