@@ -93,7 +93,7 @@ footer p {
   margin-left: 20px;
   }
 
-.tag-name, .like-count{
+.tag-name{
   float: right;
 }
 
@@ -136,8 +136,16 @@ form input[type="submit"]:hover {
   width: 40%;
 }
 
+.search-textarea{
+  width: 100%;
+}
+
 .submit-btn{
   width: 15%; 
+}
+
+.search-submit-btn{
+  width: 30%; 
 }
 
 .new-tweet{

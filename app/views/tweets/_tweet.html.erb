@@ -11,8 +11,8 @@
     <span class="tag-name">#<%= tweet.tags&.first&.tag_name %></span>
   </div>
   <div class="card-footer">
-    投稿者：<%= link_to tweet.user.nickname, user_path(tweet.user.id) %>（<%= tweet.user.gender_i18n %>・<%= tweet.user.age_i18n %>）
-    <span class="like-count">いいねの数　<%= Like.where(tweet_id: tweet.id).count %></span>
+    <div class="">投稿者：<%= link_to tweet.user.nickname, user_path(tweet.user.id) %>（<%= tweet.user.gender_i18n %>・<%= tweet.user.age_i18n %>）</div>
+    <span class="d-flex justify-content-end ">いいねの数　<%= Like.where(tweet_id: tweet.id).count %></span>
   </div>
   <ul class="list-group list-group-flush">
     <div class="btn-group dropdown">
