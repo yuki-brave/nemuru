@@ -2,7 +2,7 @@ class TweetTag
   include ActiveModel::Model
   attr_accessor(
     :title, :text, :thoughts, :mind_id, :category_id, :time_length_id, :user_id,
-    :id, :created_at, :datetime, :updated_at, :datetime,
+    :id, :created_at, :datetime, :updated_at,
     :tag_name
   )
 
