@@ -43,7 +43,7 @@ class DiariesController < ApplicationController
 
   def update
     if @diary.update(diary_params)
-      redirect_to diaries_path
+      redirect_to diary_path(@diary.id)
     else
       render :edit
     end
