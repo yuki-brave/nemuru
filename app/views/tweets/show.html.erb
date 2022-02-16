@@ -16,8 +16,8 @@
   <p class="card-text"><%= simple_format(@tweet.text) %></p>
   <p class="card-text"><small class="text-muted">投稿日：<%= l @tweet.created_at %></small></p>
   <% if user_signed_in? && current_user.id == @tweet.user_id %>
-    <%= link_to '編集', edit_tweet_path(@tweet.id), class:"change-sleep" %>
     <%= link_to '削除', tweet_path(@tweet.id), method: :delete, class:"change-sleep" %>
+    <%= link_to '編集', edit_tweet_path(@tweet.id), class:"change-sleep" %>
   <% end %>
 
   <% if user_signed_in? %>
