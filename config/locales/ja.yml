@@ -19,8 +19,8 @@ ja:
       user:
         invalid: Eメールまたはパスワードが違います。
   simple_calendar:
-    previous: 先月
-    next: 来月
+    previous: ＜＜
+    next: ＞＞
   enums:
     user:
       gender:

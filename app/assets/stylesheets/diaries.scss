@@ -17,9 +17,7 @@
   .past {}
   .future {}
 
-  .start-date {
-    background-color: #DD0000;
-  }
+  .start-date {}
 
   .prev-month {}
   .next-month { }
@@ -27,5 +25,13 @@
 
   .has-events {
     background-color: #CBFFD3;
+  }
+
+  .calendar-title{
+    font-size: 20px;
+  }
+  
+  .calendar-heading{
+    text-align: center;
   }
 }
