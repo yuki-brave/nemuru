@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, except: [:index, :show, :search, :new]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @tweets = Tweet.includes(:user).order('created_at DESC')
@@ -58,7 +58,6 @@ class TweetsController < ApplicationController
 
   def incre_search
     return nil if params[:keyword] == ''
-
     tag = Tag.where(['tag_name LIKE (?)', "%#{params[:keyword]}%"])
     render json: { keyword: tag }
   end
