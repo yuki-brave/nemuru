@@ -1,108 +1,110 @@
-# README
+# アプリケーション名
+ねむるん
 
-# テーブル設計
+# アプリケーションの概要
+睡夢の内容を共有して、悩みを抱えているユーザー同士が励まし合うことができる。  また、夢日記をつけることで、夢の内容から自身のメンタル状態を客観的に把握できる。
 
-## users テーブル
+# URL
+https://nemuru.herokuapp.com/
 
-| Column             | Type    | Options     |
-| ------------------ | ------- | ----------- |
-| nickname           | string  | null: false |
-| gender             | integer | default: 0  |
-| age                | integer | default: 0  |
-| email              | string  | null: false, unique: true |
-| encrypted_password | string  | null: false |
+# テスト用アカウント
+* Basic認証パスワード：hoge
+* Basic認証ID：1111
+* メールアドレス：hoge@hoge
+* パスワード：hoge65
 
-
-### Association
-
-- has_many :tweets
-- has_many :comments
-- has_many :likes
-- has_many :diaries
-
-## tweets テーブル
-
-| Column         | Type       | Options     |
-| -------------- | ---------- | ----------- |
-| title          | string     | null: false |
-| text           | text       | null: false |
-| thought        | text       | null: false |
-| mind_id        | integer    | null: false |
-| category_id    | integer    | null: false |
-| time_length_id | integer    | null: false | 
-| user           | references | null: false, foreign_key: true |
-
-### Association
-
-- has_many   :comments
-- belongs_to :user
-- has_many :tweet_tag_relations
-- has_many :tags, through :tweet_tag_relations
-- has_many :likes
-
-## comments テーブル
-
-| Column  | Type       | Options                        |
-| ------  | ---------- | ------------------------------ |
-| text    | text       | null: false                    |
-| user    | references | null: false, foreign_key: true |
-| tweet   | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :tweet
-
-## tags テーブル
-
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| tag_name | string | null: false |
-
-### Association
-
-- has_many :tweet_tag_relations
-- has_many :tags, through :tweet_tag_relations
-
-## tweet_tag_relations テーブル
-
-| Column | Type       | Options     |
-| ------ | ---------- | ----------- |
-| tweet  | references | null: false |
-| tag    | references | null: false |               
-
-### Association
-
-- belongs_to :tweet
-- belongs_to :tag
+# 利用方法
+## 夢の投稿
+1. トップページの(一覧ページ)のヘッダーからユーザー登録を行う
+2. 「投稿する」ボタンから、夢について（タイトル・内容・感想・タグ・気持ち・カテゴリー・長さ）を入力して、投稿する
+## 他のユーザーを励ます
+1. 一覧ページやユーザーのマイページから投稿された夢のタイトルをクリックして、夢の内容を確認する
+2. 共感できる内容や励ましたい内容などに対して、いいねやポジティブなコメントメッセージを送る。
+## 夢の日記をつける
+1. 「夢日記へ」ボタンから夢日記ページに遷移する。
+2. 「夢日記をつける」ボタンから、投稿同様に夢の内容を入力して、日記をつける。
 
 
-## likes テーブル
+# アプリケーションを作成した背景
+学生時代の病院実習で、精神科病棟で実習を行った時に、悪夢障害が原因で、うつ病を発症したという患者様を受け持たせてもらいました。初めて夢が原因で病気になることを知り、興味を持ちました。  この経験から1次・2次予防の観点から夢に関したアプリを制作したいと思いました。同じような悩みを抱えている人たちが夢を共有し励まし合うことで、メンタルケアにつながると考え、夢のツイートをすることで1次予防につながるのではと考えました。  
+また、精神的に不安定な状態になると金縛りがよく起き、悪夢や明晰夢をよく見ることが知られています。さらに夢を見ること自体が睡眠の質が悪い兆候であるため、夢日記で記録に残すことで、自分の日記から精神状態を客観的に把握・評価することができ、精神科などの医療機関への受診啓発など二次予防につながると考えました。
 
-| Column | Type       | Options     |
-| ------ | ---------- | ----------- |
-| user   | references |             |
-| tweet  | references |             |               
+# 洗い出した要件
+[要件を定義したシート](https://docs.google.com/spreadsheets/d/1bjdOi2n0LyPGl-jDJJMIKuW8DsQ2tx6ohNdLqScqrpY/edit?usp=sharing)
 
-### Association
+# 実装した機能についての画像やGIFおよびその説明
+## enumを用いたユーザー登録機能
+ユーザー登録をする際に、enumを導入しました。性別・年齢など、どのユーザーにも共通する属性部分はプルダウンの選択肢から入力することができます。データベース上では、入力された文字列に振り分けられたinteger型の数字が格納されます。
+また、enum_helpジェムを導入することで、i18n機能によって、enum適応部分を日本語化して表示しました。
+[![Image from Gyazo](https://i.gyazo.com/28f019b8abb7c5f0c87fa892957aeef6.gif)](https://gyazo.com/28f019b8abb7c5f0c87fa892957aeef6)
 
-- belongs_to :user
-- belongs_to :tweet
+## activeHashを用いた投稿機能
+夢の投稿・日記をつける時に、ActiveHashを導入しました。カテゴリーなどをプルダウンで入力することで、感覚的に入力することができ、検索にもヒットしやすくなります。enumを使用しなかった理由としては、情報量が多いため、クラス化した方が可読性が高く、変更があった場合でもメンテナンスがしやすいと考えました。
+[![Image from Gyazo](https://i.gyazo.com/a7ab907085b20a56e5d118a4539cca8d.gif)](https://gyazo.com/a7ab907085b20a56e5d118a4539cca8d)
 
+## タグ付け機能
+夢の投稿時、タグをつけることができます。formオブジェクトを用いて、tweetsテーブルとtagsテーブルに投稿データを格納します。
+[![Image from Gyazo](https://i.gyazo.com/ffe3e076c48beca38beb0836930022ff.gif)](https://gyazo.com/ffe3e076c48beca38beb0836930022ff)
 
-## diary テーブル
+## タグの逐次検索機能
+タグの入力時にインクリメンタルサーチを実装しました。
+文字の入力の都度、非同期で自動で検索を行います。フォームの入力内容からデータベース上に存在するタグデータを曖昧検索し、検索結果の候補を表示することができます。
+[![Image from Gyazo](https://i.gyazo.com/36e0af85a154b4d5d988c387273eb642.gif)](https://gyazo.com/36e0af85a154b4d5d988c387273eb642)
 
-| Column         | Type       | Options     |
-| -------------- | ---------- | ----------- |
-| start_time     | datetime   | null: false |
-| title          | string     | null: false |
-| text           | text       | null: false |
-| thought        | text       |             |
-| mind_id        | integer    |             |
-| category_id    | integer    |             |
-| time_length_id | integer    |             |
-| user           | references | null: false, foreign_key: true |
+## 複雑検索機能
+ransackジェムを導入して、検索機能を実装しました。タイトルと投稿者名は部分一致検索ができます。タイトルは半角スペースを入れることで、複数のキーワード検索ができます。「気持ち」「カテゴリー」「夢の長さ」項目はチェックボックスにチェックをいれることで、絞り込み検索が可能になっています。
+[![Image from Gyazo](https://i.gyazo.com/4c102eba3c1b100053bdb18cf9db01b8.gif)](https://gyazo.com/4c102eba3c1b100053bdb18cf9db01b8)
 
-### Association
+## 非同期のコメント投稿機能
+Action Cableを導入して、tweetされた夢に対してコメントが非同期で行えるよう実装しました。
+本番環境では、Asyncアダプタを使用しています。
+[![Image from Gyazo](https://i.gyazo.com/16ea44021051d7128283fc48fe02b9a5.gif)](https://gyazo.com/16ea44021051d7128283fc48fe02b9a5)
 
-- belongs_to :user
+## いいね機能
+投稿された夢の詳細ページにてお気に入り登録できるよういいね機能を実装しました。いいねは非同期で入力できます。ハートのアイコンはFont Awesomeから導入しました。
+[![Image from Gyazo](https://i.gyazo.com/f59dee4a6af41f5993153e699bbe7d06.gif)](https://gyazo.com/f59dee4a6af41f5993153e699bbe7d06)
+
+## カレンダー機能
+夢日記の一覧ページには日記を付けた日付とタイトルが表示されるようにSimpleCalendarを導入しました。
+タイトルをクリックすると日記の詳細ページに遷移します。
+[![Image from Gyazo](https://i.gyazo.com/95d88ba03285718635b178ea0a11f224.gif)](https://gyazo.com/95d88ba03285718635b178ea0a11f224)
+
+## レスポンシブデザイン
+bootstrapを導入して、レイアウトをしました。画面の大きさが変わってもレイアウトが崩れないようレスポンシブデザインを考慮してレイアウトしました。
+[![Image from Gyazo](https://i.gyazo.com/077bddb017f032b8cc58259ddcaeb3fe.gif)](https://gyazo.com/077bddb017f032b8cc58259ddcaeb3fe)
+
+## エラーメッセージの日本語化
+入力フォームでバリデーションがかかっている項目について入力内容に不備があった場合、エラーメッセージを表示し、i18n機能によって、日本語化しました。
+[![Image from Gyazo](https://i.gyazo.com/e1efd651971fa6e557e4348af94c7fbe.gif)](https://gyazo.com/e1efd651971fa6e557e4348af94c7fbe)
+
+# 実装予定の機能
+今後はタグ検索機能・非同期での検索機能・カレンダーへツイートした夢の紐付け・夢占い機能を実装予定・お知らせ機能・自動ログイン機能
+
+# データベース設計
+[![Image from Gyazo](https://i.gyazo.com/d57d4f8bcc31d982d5c2f78168f0ae40.png)](https://gyazo.com/d57d4f8bcc31d982d5c2f78168f0ae40)
+
+# 画面遷移図
+[![Image from Gyazo](https://i.gyazo.com/f1bdeba71b9f4e860d6fc15dc937ca33.png)](https://gyazo.com/f1bdeba71b9f4e860d6fc15dc937ca33)
+
+# 開発環境
+* Ruby
+* Ruby on Rails
+* Javascript
+* jQuery
+* MySQL
+* Github
+* Visual Studio Code
+
+# ローカルでの動作方法
+以下のコマンドを順に実行  
+% git clone https://github.com/yuki-brave/nemuru.git  
+% cd nemuru  
+% rm -rf .git  
+% bundle install  
+% yarn install  
+% rails db:create  
+% rails db:migrate  
+% rails s
+
+# 工夫したポイント
+投稿がしやすいよう入力方法にプルダウン方式やインクリメンタルサーチを取り入れました。  投稿に対して、励ましやすいよういいね機能やコメント機能は非同期で実装しました。  投稿した夢が一覧しやすいよう表示内容を最小限に、ドロップダウンを用いてレイアウトしました。  また、ペルソナを20代前半の女性としており、女性の意見を参考にさせていただきました。全体の色合いやフォントサイズや太さ・フォントファミリーなど女性目線のレイアウトを心がけました。
