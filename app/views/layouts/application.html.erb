@@ -12,10 +12,10 @@
     <script src="https://kit.fontawesome.com/534929e147.js" crossorigin="anonymous"></script>    
   </head>
   <body>
-    <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-info mt-3 mb-3">
+    <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-info mt-2">
       <% if user_signed_in? %>
-        <div class="header-name text-light align-self-start"><%= current_user.nickname %>の</div>
-        <% if (controller_path == 'diaries') %>
+        <div class="header-name text-light align-self-start ms-2"><%= current_user.nickname %>の</div>
+        <% if controller_path == 'diaries' %>
           <a class="header-title" href="/diaries"> ね む る ん 日記</a>
         <% else %>
           <a class="header-title" href="/"> ね む る ん 部屋</a>
@@ -23,8 +23,8 @@
         <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
           <ul class="navbar-nav">
             <li>
-              <% if (controller_path == 'diaries') %>
-                <%= link_to "（ツイートへ）", root_path, class:"nav-link" %>
+              <% if controller_path == 'diaries' %>
+                <%= link_to "（夢部屋へ）", root_path, class:"nav-link" %>
               <% else %>
                 <%= link_to "（夢日記へ）", diaries_path, class:"nav-link" %>
               <% end %>
