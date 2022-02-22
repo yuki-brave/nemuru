@@ -3,32 +3,39 @@
     <div class="col-md-4">
       <div class="container">
         <%= search_form_for @q, url: search_tweets_path, html: {id: "detailed-search-form"} do |f| %>
-          <div class="search-field text-center">
+          <div class="search-field text-center text-primary">
             <%= f.label :title, '夢のタイトル(半角スペースで複数検索)' %>
             <br>
             <%= f.text_field :title, placeholder: '夢のタイトル', value: params[:q]&.dig(:title), class:"comment-form" %>
           </div>
-          <div class="search-field text-center">
+          <div class="search-field text-center text-primary">
             <%= f.label :user_nickname_cont, '投稿者名' %>
             <br>
             <%= f.text_field :user_nickname_cont, placeholder: '投稿者名', class:"comment-form" %>
           </div>
           <div class="search-field text-center">
-            <span class="text-info">
+            <span class="text-primary">
+              <%= f.label :tweet_tag_relations_tag_id_in, 'タグ' %>
+            </span>
+            <br>
+            <%= f.collection_check_boxes(:tweet_tag_relations_tag_id_in, Tag.all, :id, :tag_name, {include_blank: "---"}) %>
+          </div>
+          <div class="search-field text-center">
+            <span class="text-primary">
               <%= f.label :category_id_in, '気持ち' %>
             </span>
             <br>
             <%= f.collection_check_boxes(:mind_id_in, Mind.all, :id, :name, {include_blank: "---"}) %>
           </div>
           <div class="search-field text-center">
-            <span class="text-info text-info">
+            <span class="text-primary">
               <%= f.label :category_id_in, 'カテゴリー' %>
             </span>
             <br>
             <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}) %>
           </div>
           <div class="search-field text-center">
-            <span class="text-info text-info">
+            <span class="text-primary">
               <%= f.label :category_id_in, '夢の長さ' %>
             </span>
             <br>

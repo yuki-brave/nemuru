@@ -81,7 +81,7 @@ bootstrapを導入して、レイアウトをしました。画面の大きさ�
 [![Image from Gyazo](https://i.gyazo.com/e1efd651971fa6e557e4348af94c7fbe.gif)](https://gyazo.com/e1efd651971fa6e557e4348af94c7fbe)
 
 # 実装予定の機能
-今後は、管理機能・タグ検索機能・非同期での検索機能・カレンダーへツイートした夢の紐付け・夢の傾向のグラフ化・夢占い機能・お知らせ機能・自動ログイン機能機能の実装予定です。
+今後は、管理機能・非同期での検索機能・カレンダーへツイートした夢の紐付け・夢の傾向のグラフ化・夢占い機能・お知らせ機能・自動ログイン機能機能の実装予定です。
 
 # データベース設計
 [![Image from Gyazo](https://i.gyazo.com/d57d4f8bcc31d982d5c2f78168f0ae40.png)](https://gyazo.com/d57d4f8bcc31d982d5c2f78168f0ae40)
