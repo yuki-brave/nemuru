@@ -8,7 +8,7 @@
       <% end %>
     <% end %>
     <strong><%= link_to tweet.title, tweet_path(tweet.id) %></strong>
-    <span class="tag-name">#<%= tweet.tags&.first&.tag_name %></span>
+    <span class="tag-name">#<%= link_to tweet.tags&.first&.tag_name, tag_tweet_path(tweet.tags.ids) %></span>
   </div>
   <div class="card-footer">
     <div class="">投稿者：<%= link_to tweet.user.nickname, user_path(tweet.user.id) %>（<%= tweet.user.gender_i18n %>・<%= tweet.user.age_i18n %>）</div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <p class="text-center text-info text-lg">#<%= @tag_name %></p>
+  <% @tags.each do |tag| %>
+    <div class="container">
+      <div class="card-header">
+        <% if user_signed_in? %>
+          <% if current_user.likes.find_by(tweet_id: tag.tweet.id) %>
+            <i class="fas fa-heart fa-sm"></i>
+          <% else %>
+            <i class="far fa-heart fa-sm"></i>
+          <% end %>
+        <% end %>
+        <strong><%= link_to tag.tweet.title, tweet_path(tag.tweet.id) %></strong>
+        <div class="card-footer">
+          <div class="">投稿者：<%= link_to tag.tweet.user.nickname, user_path(tag.tweet.user.id) %>（<%= tag.tweet.user.gender_i18n %>・<%= tag.tweet.user.age_i18n %>）</div>
+          <span class="d-flex justify-content-end ">いいねの数　<%= Like.where(tweet_id: tag.tweet.id).count %></span>
+        </div>
+        <ul class="list-group list-group-flush">
+          <div class="btn-group dropdown">
+            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle  btn-info" data-bs-toggle="dropdown" aria-expanded="false">
+            くわしくは
+            </button>
+            <ul class="dropdown-menu">
+              <li class="list-group-item">
+                <span class="d-inline-block text-truncate" style="max-width: 500px;">
+                  内容：<%= tag.tweet.text %>
+                </span>
+              </li>
+              <li class="list-group-item">気持ち： <%= Mind.find(tag.tweet.mind_id)[:name] %></li>
+              <li class="list-group-item">カテゴリー：<%= Category.find(tag.tweet.category_id)[:name] %></li>
+              <li class="list-group-item">夢の長さ：<%= TimeLength.find(tag.tweet.time_length_id)[:name] %></li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

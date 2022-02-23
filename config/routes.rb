@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     end
     resources :comments, only: :create
     resources :likes, only: [:create, :destroy]
+    member do
+      get 'tag', to: 'tags#index'
+    end
   end
   resources :users, only: :show
   resources :diaries
