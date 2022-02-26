@@ -5,6 +5,12 @@ class DiariesController < ApplicationController
 
   def index
     @diaries = Diary.includes(:user)
+    @diary_count = Diary.select(:id).count + Tweet.select(:id).count
+    @positive_count = Diary.where(mind_id: 1).count + Tweet.where(mind_id: 1).count
+    @negative_count = Diary.where(mind_id: 2).count + Tweet.where(mind_id: 2).count
+    @nightmare_count = Diary.where(category_id: 10).count + Tweet.where(category_id: 10).count
+    @lucid_dreaming_count = Diary.where(Category_id: 11).count + Tweet.where(category_id: 11).count
+    @sleep_paralysis_count = Diary.where(Category_id: 12).count + Tweet.where(category_id: 12).count
   end
 
   def new

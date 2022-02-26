@@ -1,11 +1,48 @@
 <div class="container">
-<%= month_calendar(events: @diaries) do |date, diaries| %>
-  <%= date.day %>
+  <%= month_calendar(events: @diaries) do |date, diaries| %>
+    <%= date.day %>
 
-  <% diaries.each do |diary| %>
-    <div>
-      <%= link_to diary.title, diary_path(diary.id) %>
-    </div>
+    <% diaries.each do |diary| %>
+      <div>
+        <%= link_to diary.title, diary_path(diary.id) %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 </div>
+
+<div class="container">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script>
+  const labels = [
+    '夢の数',
+    'ポジティブな夢',
+    'ネガティブな夢',
+    '悪夢',
+    '明晰夢',
+    '金縛り',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: '夢の傾向',
+      borderColor: '#4689FF',
+      data: [<%= @diary_count %>,<%= @positive_count %>,<%= @negative_count %>,<%= @nightmare_count %>,<%= @lucid_dreaming_count %>, <%= @sleep_paralysis_count %>],
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+</script>
+
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
